@@ -22,15 +22,17 @@ piano = file.mergeTracks(lh, rh, name="Piano")
 
 # Assigning notes to objects
 # You can also handle this in the 3D Viewport MIDAnimator menu.
+
 scene = bpy.context.scene
-scene.quick_instrument_type = "string"
-scene.note_number_list = str(piano.allUsedNotes())
-scene.quick_obj_col = bpy.data.collections['Cubes']
-scene.quick_obj_curve = bpy.data.objects['ANIM_Osc']
-scene.quick_use_sorted = True
+scene.midi.quick_note_number_list = str(piano.allUsedNotes())
+scene.midi.quick_obj_col = bpy.data.collections['Cubes']
+scene.midi.quick_sort_by_name = True
 bpy.ops.scene.quick_add_props()
+
+for obj in bpy.data.collections['Cubes'].all_objects:
+    obj.midi.note_on_curve = bpy.data.objects['ANIM_Osc']
 
 # create a MIDIAnimatorNode object & add tracks
 animator = MIDIAnimatorNode()
-animator.addInstrument(midiTrack=piano, objectCollection=bpy.data.collections['Cubes'])
+animator.addInstrument(instrumentType="evaluate", midiTrack=piano, objectCollection=bpy.data.collections['Cubes'])
 animator.animate()
