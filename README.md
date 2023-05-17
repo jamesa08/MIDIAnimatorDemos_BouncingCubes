@@ -1,2 +1,2 @@
 # MIDIAnimatorDemos_BouncingCubes
-A demonstration of MIDIAnimator playing along to "Maple Leaf" ragtime. MIDI file from https://www.johnroachemusic.com/mapleaf.html.
+A demonstration of MIDIAnimator playing along to "Maple Leaf" ragtime. MIDI file from https://web.archive.org/web/20221207211814/http://www.johnroachemusic.com/mapleaf.html
