@@ -1,15 +1,17 @@
 """
 Bouncing Cubes animation script
-For MIDIAnimator version 1.0
+For MIDIAnimator version beta4.0
+MIDI file is "Maple Leaf" by Scott Joplin
+MIDI file from https://www.johnroachemusic.com/mapleaf.html 
 Licensed under the GNU General Public License v3.0
 
 Notes:
 Run script by pressing the "Run Script" button.
-It will take 18-20 seconds to process. Be patient while MIDIAnimator processes the MIDI file & animates it.
+It will take about 3 seconds to process. Be patient while MIDIAnimator processes the MIDI file & animates it.
 """
 
 import bpy
-from MIDIAnimator.data_structures.midi import MIDIFile
+from MIDIAnimator.data_structures.midi import MIDIFile, MIDITrack
 from MIDIAnimator.src.animation import MIDIAnimatorNode
 
 # Get MIDI File
@@ -30,7 +32,9 @@ scene.midi.quick_sort_by_name = True
 bpy.ops.scene.quick_add_props()
 
 for obj in bpy.data.collections['Cubes'].all_objects:
-    obj.midi.note_on_curve = bpy.data.objects['ANIM_Osc']
+    obj.midi.note_on_curve = bpy.data.objects['ANIM_Osc_On']
+    obj.midi.note_on_anchor_pt = -5
+    obj.midi.note_off_curve = bpy.data.objects['ANIM_Osc_Off']
 
 # create a MIDIAnimatorNode object & add tracks
 animator = MIDIAnimatorNode()
